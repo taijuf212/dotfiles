@@ -1,31 +1,13 @@
+export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="/usr/local/opt/curl/bin:$PATH"
-# 各種設定
-setopt print_eight_bit
-
-setopt no_beep
-
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  autoload -Uz compinit && compinit
-fi
-
 # alias
 alias ll='ls -l'
-alias -g @g='| grep'
-alias -g @l='| less'
 
-# npm
-alias nig="npm install -g"
-alias nis="npm install --save"
-alias nui="npm uninstall"
-alias nuis="npm uninstall --save"
-alias nls="npm ls"
-alias niy="npm init -y"
-alias nid="npm install --save-dev"
+
+# git
+alias st='status'
+alias cm='commit'
+alias co='checkout'
 
 # git-promptの読み込み
 source ~/.zsh/git-prompt.sh
@@ -47,28 +29,19 @@ PROMPT='
 [%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
 %F{yellow}$%f '
 
-# git
-alias g='git'
-alias gs='git status'
-alias gb='git branch'
-alias gc='git checkout'
-alias gct='git commit'
-alias gg='git grep'
-alias ga='git add'
-alias gd='git diff'
-alias gl='git log'
-alias gfo='git fetch origin'
-alias gcm='git commit -m'
-alias gpo='git push origin'
-alias gpom='git push origin master'
-alias gst='git stash'
-alias gsl='git stash list'
-alias gsp='git stash pop'
 
-# docker
-alias d='docker'
-alias dc='docker-compose'
-alias dcnt='docker container'
-alias dimg='docker image'
-alias drun='docker container run —rm -d'
-alias drunit='docker container run —rm -it'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/fukayataiju/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/fukayataiju/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/fukayataiju/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/fukayataiju/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# mise
+eval "$(mise activate zsh)"
+# aqua
+export PATH="$(aqua root-dir)/bin:$PATH"
